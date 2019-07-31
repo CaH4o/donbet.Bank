@@ -7,26 +7,6 @@ using System.Threading.Tasks;
 // Hаписать приложение, имитирующее работу банкомата
 // Реализовать классы Banc, Client, Account.
 
-// Client:
-//   номер карты
-//   пароль
-//   сумма на счету
-
-// Account:
-//   методы для зачисления/растраты денег
-//   метод проверки пароля при авторизации
-//   метод для установки значения в поле "опасных" попыток авторизации.
-//   После "правильной" авторизации значение обнуляется.
-//   Вывод данных по аккаунту
-//   метод для изменения пароля
-
-// Banc:
-//   содержит список клиентов
-//   метод для записи данных в файл
-//   метод для считывания данных из файла
-//   метод для генерирования данных о карте
-//   метод для генерирования пароля
-
 // Изначально клиенту нужно открыть счёт в банке, получить номер счёта,
 // получить свой пароль, положить сумму на счёт.
 
@@ -68,56 +48,51 @@ namespace dotnet_bank_bankomat_client
 {
 
 
-    class Actions {
-
-        public void F1() {
-
-        }
-
-        public void F2()
-        {
-
-        }
-
-        public void F3()
-        {
-
-        }
-
-        public void F4()
-        {
-
-        }
-    }
-
-
     class Program
     {
 
         static void Main(string[] args)
         {
-            bool isExit = false;
+            bool isNotExit = true;
+			//FileWorker file = new FileWorker("db.txt");
 
-            Actions A = new Actions();
+			Menu.SetUp("Что делаем?", Console.WindowWidth / 2 - 15, Console.WindowHeight / 2 - 8);
+			Menu.AddMenu("1", () => {
+				Bank bank = new Bank();
+				Console.WriteLine(bank.GetNewCardNo());
+				Console.Read();
+			});
+            Menu.AddMenu("2", () => {
+				Bank bank = new Bank();
+				Console.WriteLine(bank.GetNewPassword());
+				Console.Read();
+			});
+			Menu.AddMenu("3", () => {
+				//Console.WriteLine("Введите имя.");
+				//file.WriteName(Console.ReadLine());
+			});
+			Menu.AddMenu("4", () => {
+				//Console.WriteLine("Введите адрес.");
+				//file.WriteAddress(Console.ReadLine());
+			});
+			Menu.AddMenu("5", () => {
+				//Console.WriteLine(file.Read());
+				//Console.Read();
+			});
+			Menu.AddMenu("Выход", () => { isNotExit = false; });
 
-            Menu.SetUp("Что делаем?", Console.WindowWidth / 2 - 15, Console.WindowHeight / 2 - 8);
-            Menu.AddMenu("Вывести на экран", A.F1);
-            Menu.AddMenu("Изменить имя", A.F2);
-            Menu.AddMenu("Изменить адрес", A.F3);
-            Menu.AddMenu("Выход", A.F4);
 
 
-            Console.CursorVisible = false;
+
+
+
+			Console.CursorVisible = false;
             Menu.DrawMenu();
-            //FileWorker file = new FileWorker("db.txt");
 
-            do
+			do
             {
                 Menu.Action(Console.ReadKey());
-
-
-
-            } while (!isExit);
+            } while (isNotExit);
 
 
         }
