@@ -34,9 +34,17 @@ namespace dotnet_bank_bankomat_client
 		public string NoCard { get;  }
 		public string Password { get; private set; }
 		decimal _money;
+
 		public decimal Money {
 			get { return _money; }
 			set { if(_money + value >= 0) _money += value; }
+		}
+
+		public override string ToString()
+		{
+			return $" Номер: {this.NoCard.Substring(0, 4)} {this.NoCard.Substring(4, 4)} " +
+				$"{this.NoCard.Substring(8, 4)} {this.NoCard.Substring(12, 4)}\n" +
+				$"Пароль: {this.Password}\nДеньги: {this._money}";
 		}
 	}
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 // Hаписать приложение, имитирующее работу банкомата
@@ -46,45 +48,42 @@ using System.Threading.Tasks;
 
 namespace dotnet_bank_bankomat_client
 {
-
-
     class Program
     {
 
         static void Main(string[] args)
         {
             bool isNotExit = true;
+			Bank bank = new Bank();
+
 			//FileWorker file = new FileWorker("db.txt");
 
 			Menu.SetUp("Что делаем?", Console.WindowWidth / 2 - 15, Console.WindowHeight / 2 - 8);
-			Menu.AddMenu("1", () => {
-				Bank bank = new Bank();
-				Console.WriteLine(bank.GetNewCardNo());
-				Console.Read();
+			Menu.AddMenu("Получить Карту", () => {
+				bank.NewClient();
 			});
-            Menu.AddMenu("2", () => {
-				Bank bank = new Bank();
-				Console.WriteLine(bank.GetNewPassword());
-				Console.Read();
+
+            Menu.AddMenu("Показать клиентов", () => {
+				Menu.Clear();
+				Console.WriteLine(bank);
+				Console.ReadKey();
+
 			});
+
 			Menu.AddMenu("3", () => {
-				//Console.WriteLine("Введите имя.");
-				//file.WriteName(Console.ReadLine());
+
 			});
+
 			Menu.AddMenu("4", () => {
-				//Console.WriteLine("Введите адрес.");
-				//file.WriteAddress(Console.ReadLine());
+
 			});
-			Menu.AddMenu("5", () => {
-				//Console.WriteLine(file.Read());
-				//Console.Read();
-			});
+
 			Menu.AddMenu("Выход", () => { isNotExit = false; });
 
 
 
 
-
+			
 
 			Console.CursorVisible = false;
             Menu.DrawMenu();

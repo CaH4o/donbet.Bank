@@ -79,7 +79,7 @@ namespace dotnet_bank_bankomat_client
             {
                 MenuList[Select].action();
 
-                Console.Clear();
+                Clear();
                 DrawMenu();
             }
         }
