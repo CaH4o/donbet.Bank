@@ -46,7 +46,6 @@ namespace dotnet_bank_bankomat_client
 					long count = sr.ReadInt64();
 					string noCard;
 					string password;
-					Console.WriteLine(count);
 
 					for (int i = 0; i < count; i++)
 					{
@@ -56,11 +55,7 @@ namespace dotnet_bank_bankomat_client
 						Client cTemp = new Client(noCard, password);
 						cTemp.Money = sr.ReadDecimal();
 						clients.Add(cTemp);
-
-						Console.WriteLine(cTemp);
 					}
-
-					Console.ReadKey();
 				}
 			}
 		}

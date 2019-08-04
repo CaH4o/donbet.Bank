@@ -128,11 +128,10 @@ namespace dotnet_bank_bankomat_client
 
             for (int i = 0; i < ((MaxLen - Titel.Length) / 2) + 1; ++i)
                 Console.Write(" ");
-            Console.WriteLine(Titel);
+            Console.Write(Titel);
             Console.SetCursorPosition(Coord.X, Coord.Y + 1);
             for (int i = 0; i <= MaxLen + 1; ++i)
                 Console.Write("=");
-            Console.WriteLine();
 
             Console.ForegroundColor = ColourMenu;
             for (int i = 0; i < MenuList.Count; ++i)
@@ -154,9 +153,7 @@ namespace dotnet_bank_bankomat_client
                 DrawBlock(ConsoleColor.White, 2 + i * 3);
                 Console.SetCursorPosition(Coord.X + 1, Coord.Y + 3 + i * 3);
                 Console.Write("   ");
-                Console.WriteLine(MenuList[i].Title);
-                for (int j = 0; j < MaxLen - MenuList[i].Title.Length - 3; ++j)
-                    Console.Write(" ");
+                Console.Write(MenuList[i].Title);
             }
             Console.ForegroundColor = ConsoleColor.White;
         }

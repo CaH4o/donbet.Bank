@@ -56,22 +56,22 @@ namespace dotnet_bank_bankomat_client
             bool isNotExit = true;
 			Bank bank = new Bank();
 
-			//FileWorker file = new FileWorker("db.txt");
-
 			Menu.SetUp("Что делаем?", Console.WindowWidth / 2 - 15, Console.WindowHeight / 2 - 8);
-			Menu.AddMenu("Получить Карту", () => {
+			Menu.AddMenu("Получить новую карту", () => {
 				bank.NewClient();
 			});
 
             Menu.AddMenu("Показать клиентов", () => {
 				Menu.Clear();
+				Console.SetCursorPosition(0, 0);
 				Console.WriteLine(bank);
 				Console.ReadKey();
 
 			});
 
-			Menu.AddMenu("3", () => {
-
+			Menu.AddMenu("Clear", () => {
+				Menu.Clear();
+				Console.ReadKey();
 			});
 
 			Menu.AddMenu("4", () => {
